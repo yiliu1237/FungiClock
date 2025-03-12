@@ -1,0 +1,226 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* Counter and Button */
+#collection-log {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#show-clock {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    background: #008CBA;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#show-clock:hover {
+    background: #0077A3;
+}
+
+/* Semi-Transparent Overlay */
+#clock-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5); /* Semi-transparent black */
+    display: flex;
+    flex-direction: column;  /* Ensures date is ABOVE time */
+    justify-content: center;
+    align-items: center; /* aligning items inside a flex or grid container (for layout positioning) ??? */ 
+    text-align: center; /* when aligning text inside a block element (for inline content alignment) ???*/
+    z-index: 2000;
+}
+
+.hidden {
+    display: none;
+}
+
+/* date above the time */
+#clock-date {
+    font-size: 30px;
+    margin-bottom: 0px;  /* Reduce space */
+}
+
+
+#clock-time {
+    font-size: 135px;
+    font-weight: bold;
+    margin-top: -5px;
+}
+
+
+#focus-scene img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ensures the image fully covers the area */
+    position: absolute;
+}
+
+#background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+}
+
+/* !important to ensure the element stays hidden unless we explicitly remove the .hidden class.
+Without !important, other CSS rules could accidentally override display: none;.  */
+.hidden {
+    display: none !important;
+}
+
+#popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+#popup-content p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#popup-content button {
+    padding: 8px 15px;
+    font-size: 16px;
+    border: none;
+    background: #ff9800;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#popup-content button:hover {
+    background: #e68900;
+}
+
+
+
+#mushroom-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh; 
+}
+
+#mushroom-container img {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    height: auto;
+    cursor: grab;
+    transition: transform 0.2s ease; /*Enables smooth animation between property changes (hover and scales)*/
+}
+
+
+#mushroom-container img:active {
+    cursor: grabbing;
+}
+
+#mushroom-container img:hover { /*Hover effects (left and top positioning) are based on the top-left corner.*/
+    transform: scale(1.1);
+    transform: translate(-50%, -50%) scale(1.1); /* scaling happens relative to the mushroom's own center.*/
+}
+
+
+
+
+#settings-panel {
+    font-size: 15px;  /* adjust font size */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;  /* reduce padding for a more compact design */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 2000;
+}
+
+/* fix gap between "Adjust Time" and "Set Custom Time" */
+#settings-panel h1 {
+    font-size: 18px;  /* make title smaller */
+    font-weight: bold;
+    margin-bottom: 5px;  /* reduce space between title and next element */
+}
+
+#settings-panel label {
+    display: inline-block;  /* keeps label and input on the same line */
+    font-size: 15px;
+    vertical-align: middle; /* aligns label properly */
+    margin-top: 0px;
+    margin-bottom: 14px;
+}
+
+#settings-panel input {
+    display: inline-block;  /* keeps input next to label */
+    font-size: 14px;
+    width: 70px; 
+    margin-left: 5px; /* adds small space between label & input */
+}
+
+
+#settings-panel button {
+    font-size: 14px;  
+    padding: 8px 14px;  
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
+#settings-panel.hidden {
+    display: none;
+}
+
+#settings-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    background: #444;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#settings-button:hover {
+    background: #222;
+}
+
+
+
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
