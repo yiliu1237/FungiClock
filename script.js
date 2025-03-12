@@ -152,6 +152,12 @@ document.addEventListener("DOMContentLoaded", () => {
     function setMushroomPositions() {
         const period = getTimePeriod(); // Get current time period
         const sceneKey = `scene${currentIndex}`;
+
+        // Hide ALL mushrooms first before updating the new scene
+        const allMushrooms = document.querySelectorAll("#mushroom-container img");
+        allMushrooms.forEach(mushroom => {
+            mushroom.style.visibility = "hidden"; // Reset all mushrooms to be invisible
+        });
     
         if (mushroomPositions[period] && mushroomPositions[period][sceneKey]) {
             mushroomPositions[period][sceneKey].forEach(pos => {
