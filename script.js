@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let mushroomPositions = {}; 
     // Load positions from JSON file
-    fetch("mushroom_positions.json")
+    fetch("https://yiliu1237.github.io/Forest-Wander/mushroom_forest/mushroom_positions.json")
         .then(response => response.json())
         .then(data => {
             mushroomPositions = data;
