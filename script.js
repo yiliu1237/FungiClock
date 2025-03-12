@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
     const mushrooms = document.querySelectorAll("#mushroom-container img");
     const popup = document.getElementById("popup");
     const popupCloseButton = document.getElementById("popup-close");
@@ -157,14 +158,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (mushroomPositions[period] && mushroomPositions[period][sceneKey]) {
             mushroomPositions[period][sceneKey].forEach(pos => {
                 const mushroom = document.getElementById(pos.id);
-
-                console.log(mushroom)
                 if (mushroom) {
                     mushroom.style.left = pos.left;
                     mushroom.style.top = pos.top;
                     mushroom.style.width = pos.width;
-                } else {
-                    mushroom.style.display = "none";
+
+                    mushroom.style.visibility = "visible";
                 }
             });
         } 
