@@ -18,20 +18,89 @@
         ]
     },
     "noon": {
+        "scene0": [
+            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+        ],
+        "scene1": [
+            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+        ],
+        "scene2": [
+            { "id": "mushroom1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
+            { "id": "mushroom2", "left": "50vw", "top": "45vh", "width": "4vw" },
+            { "id": "mushroom3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+        ]
     },
     "afternoon": {
+        "scene0": [
+            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+        ],
+        "scene1": [
+            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+        ],
+        "scene2": [
+            { "id": "mushroom1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
+            { "id": "mushroom2", "left": "50vw", "top": "45vh", "width": "4vw" },
+            { "id": "mushroom3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+        ]
     },
     "evening": {
+        "scene0": [
+            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+        ],
+        "scene1": [
+            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+        ],
+        "scene2": [
+            { "id": "mushroom1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
+            { "id": "mushroom2", "left": "50vw", "top": "45vh", "width": "4vw" },
+            { "id": "mushroom3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+        ]
     },
     "night": {
+        "scene0": [
+            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+        ],
+        "scene1": [
+            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+        ],
+        "scene2": [
+            { "id": "mushroom1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
+            { "id": "mushroom2", "left": "50vw", "top": "45vh", "width": "4vw" },
+            { "id": "mushroom3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+        ]
     },
     "dawn": {
         "scene0": [
-          ],
-          "scene1": [
-          ],
-          "scene2": [
-          ]
+            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+        ],
+        "scene1": [
+            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+        ],
+        "scene2": [
+            { "id": "mushroom1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
+            { "id": "mushroom2", "left": "50vw", "top": "45vh", "width": "4vw" },
+            { "id": "mushroom3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+        ]
     }
   }
   
