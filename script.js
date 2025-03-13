@@ -160,8 +160,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return `scene${currentIndex}`;
     }
 
-    function getMushroomGroup(mushroomID) {
-        return Object.entries(mushroomGroups).find(([_, mushrooms]) => mushrooms.includes(mushroomID))?.[0] || null;
+    function getMushroomGroup(mushroomType) {
+        return Object.entries(mushroomGroups).find(([_, mushrooms]) => mushrooms.includes(mushroomType))?.[0] || null;
     }
     
 
@@ -193,20 +193,14 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
         mushroomPositions[period][sceneKey].forEach(pos => {
-            // const possibleMushrooms = mushroomGroups[pos.group];
-            // if (!possibleMushrooms) return; // Skip if no mushrooms exist in the group
-
-            // // Pick a random mushroom from the group
-            // const randomMushroomID = possibleMushrooms[Math.floor(Math.random() * possibleMushrooms.length)];
-            // const mushroomImageURL = `https://yiliu1237.github.io/Forest-Wander/mushroom_forest/interactive_objects/${randomMushroomID}.png`;
-
-            const mushroomImageURL = `https://yiliu1237.github.io/Forest-Wander/mushroom_forest/interactive_objects/mushroom${pos.group}.png`;
+            console.log(pos.type)
+            const mushroomImageURL = `https://yiliu1237.github.io/Forest-Wander/mushroom_forest/interactive_objects/mushroom${pos.type}.png`;
             
             console.log(mushroomImageURL)
             const mushroom = document.createElement("img");
             mushroom.src = mushroomImageURL;
             mushroom.classList.add("mushroom");
-            mushroom.setAttribute("data-group", pos.group);
+            mushroom.setAttribute("data-type", pos.type);
             mushroom.setAttribute("data-scene", sceneKey); 
             mushroom.setAttribute("data-period", period);
             mushroom.style.left = pos.left;
@@ -246,7 +240,15 @@ document.addEventListener("DOMContentLoaded", () => {
         Object.keys(sceneRemovedMushrooms[period]).forEach(sceneKey => {
             sceneRemovedMushrooms[period][sceneKey].forEach(mushroom => {
                 if (!mushroom) return;
-                const group = mushroom.dataset.group;
+                const type = mushroom.dataset.type;
+
+                console.log("mushroom type: ", type);
+                const group = getMushroomGroup(type);
+
+                console.log("regenerated mushroom group: ", group);
+                console.log(mushroomGroups[group])
+
+                //group number starts from 1
                 const possibleMushrooms = mushroomGroups[group];
                 if (!possibleMushrooms) return;
 
@@ -266,7 +268,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // refreshes all mushrooms every minute
-    setInterval(regenerateMushrooms, 60000);
+    //setInterval(regenerateMushrooms, 60000);
+    setInterval(regenerateMushrooms, 600);
     console.log("before load mushroom pos");
     loadMushroomPositions();
 
