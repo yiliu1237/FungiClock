@@ -207,7 +207,6 @@ document.addEventListener("DOMContentLoaded", () => {
             mushroom.style.display = "block";
             mushroom.style.visibility = "visible";
 
-
             // Click event for mushroom
             mushroom.addEventListener("click", () => {
                 const sceneKey = getSceneKey();
@@ -224,6 +223,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             mushroomContainer.appendChild(mushroom);
+
+            console.log("mushroom added");
         });
     }
 
@@ -254,6 +255,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // refreshes all mushrooms every minute
     setInterval(regenerateMushrooms, 60000);
+    console.log("before load mushroom pos");
     loadMushroomPositions();
 
 
