@@ -171,6 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(response => response.json())
             .then(data => {
                 mushroomPositions = data;
+                console.log(data)
                 setMushroomPositions();
             })
             .catch(error => console.error("Error loading mushroom positions:", error));
@@ -183,17 +184,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
         mushroomContainer.innerHTML = "";  // Clear old mushrooms
 
+        console.log(period)
+        console.log(sceneKey)
+
+
+
         if (!mushroomPositions[period] || !mushroomPositions[period][sceneKey]) return;
     
 
         mushroomPositions[period][sceneKey].forEach(pos => {
-            const possibleMushrooms = mushroomGroups[pos.group];
-            if (!possibleMushrooms) return; // Skip if no mushrooms exist in the group
+            // const possibleMushrooms = mushroomGroups[pos.group];
+            // if (!possibleMushrooms) return; // Skip if no mushrooms exist in the group
 
-            // Pick a random mushroom from the group
-            const randomMushroomID = possibleMushrooms[Math.floor(Math.random() * possibleMushrooms.length)];
-            const mushroomImageURL = `https://yiliu1237.github.io/Forest-Wander/mushroom_forest/interactive_objects/mushroom${randomMushroomID}.png`;
+            // // Pick a random mushroom from the group
+            // const randomMushroomID = possibleMushrooms[Math.floor(Math.random() * possibleMushrooms.length)];
+            // const mushroomImageURL = `https://yiliu1237.github.io/Forest-Wander/mushroom_forest/interactive_objects/${randomMushroomID}.png`;
 
+            const mushroomImageURL = `https://yiliu1237.github.io/Forest-Wander/mushroom_forest/interactive_objects/mushroom${pos.group}.png`;
+            
+            console.log(mushroomImageURL)
             const mushroom = document.createElement("img");
             mushroom.src = mushroomImageURL;
             mushroom.classList.add("mushroom");
@@ -230,6 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function regenerateMushrooms() {
         const period = getTimePeriod();
+        const sceneKey = getSceneKey();
 
         if (!sceneRemovedMushrooms[period] || !sceneRemovedMushrooms[period][sceneKey]) return;
 
@@ -245,6 +255,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 mushroom.src = `https://yiliu1237.github.io/Forest-Wander/mushroom_forest/interactive_objects/${randomMushroomID}.png`;
 
                 mushroom.style.visibility = "visible"; // Show the mushroom again
+
+                console.log("mushroom regenerated.")
             });
 
             // Reset removed mushrooms for this scene
