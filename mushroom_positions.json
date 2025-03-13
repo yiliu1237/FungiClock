@@ -1,105 +1,105 @@
 {
     "morning": {
         "scene0": [
-            {"id": "mushroom2", "left": "84vw", "top": "53vh", "width": "3vw"},
-            {"id": "mushroom3", "left": "16vw", "top": "57vh", "width": "8vw"},
-            {"id": "mushroom4", "left": "37vw", "top": "41vh", "width": "5vw"},
-            {"id": "mushroom5", "left": "22vw", "top": "57vh", "width": "10vw"}
+            {"group": "2", "left": "84vw", "top": "53vh", "width": "3vw"},
+            {"group": "3", "left": "16vw", "top": "57vh", "width": "8vw"},
+            {"group": "4", "left": "37vw", "top": "41vh", "width": "5vw"},
+            {"group": "5", "left": "22vw", "top": "57vh", "width": "10vw"}
         ],
         "scene1": [
-            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
-            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+            {"group": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "group": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "group": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
         ],
         "scene2": [
-            { "id": "mushroom1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
-            { "id": "mushroom2", "left": "50vw", "top": "45vh", "width": "4vw" },
-            { "id": "mushroom3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+            { "group": "1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
+            { "group": "2", "left": "50vw", "top": "45vh", "width": "4vw" },
+            { "group": "3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
         ]
     },
     "noon": {
         "scene0": [
-            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
-            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+            { "group": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "group": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "group": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
         ],
         "scene1": [
-            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
-            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+            { "group": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "group": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "group": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
         ],
         "scene2": [
-            { "id": "mushroom1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
-            { "id": "mushroom2", "left": "50vw", "top": "45vh", "width": "4vw" },
-            { "id": "mushroom3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+            { "group": "1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
+            { "group": "2", "left": "50vw", "top": "45vh", "width": "4vw" },
+            { "group": "3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
         ]
     },
     "afternoon": {
         "scene0": [
-            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
-            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+            { "group": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "group": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "group": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
         ],
         "scene1": [
-            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
-            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+            { "group": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "group": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "group": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
         ],
         "scene2": [
-            { "id": "mushroom1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
-            { "id": "mushroom2", "left": "50vw", "top": "45vh", "width": "4vw" },
-            { "id": "mushroom3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+            { "group": "1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
+            { "group": "2", "left": "50vw", "top": "45vh", "width": "4vw" },
+            { "group": "3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
         ]
     },
     "evening": {
         "scene0": [
-            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
-            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+            { "group": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "group": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "group": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
         ],
         "scene1": [
-            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
-            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+            { "group": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "group": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "group": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
         ],
         "scene2": [
-            { "id": "mushroom1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
-            { "id": "mushroom2", "left": "50vw", "top": "45vh", "width": "4vw" },
-            { "id": "mushroom3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+            { "group": "1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
+            { "group": "2", "left": "50vw", "top": "45vh", "width": "4vw" },
+            { "group": "3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
         ]
     },
     "night": {
         "scene0": [
-            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
-            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+            { "group": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "group": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "group": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
         ],
         "scene1": [
-            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
-            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+            { "group": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "group": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "group": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
         ],
         "scene2": [
-            { "id": "mushroom1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
-            { "id": "mushroom2", "left": "50vw", "top": "45vh", "width": "4vw" },
-            { "id": "mushroom3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+            { "group": "1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
+            { "group": "2", "left": "50vw", "top": "45vh", "width": "4vw" },
+            { "group": "3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
         ]
     },
     "dawn": {
         "scene0": [
-            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
-            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+            {"id": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "id": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "id": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
         ],
         "scene1": [
-            {"id": "mushroom1", "left": "52vw", "top": "60vh", "width": "5vw"},
-            { "id": "mushroom2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-            { "id": "mushroom3", "left": "70vw", "top": "70vh", "width": "5vw" }
+            {"id": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            { "id": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            { "id": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
         ],
         "scene2": [
-            { "id": "mushroom1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
-            { "id": "mushroom2", "left": "50vw", "top": "45vh", "width": "4vw" },
-            { "id": "mushroom3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+            { "id": "1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
+            { "id": "2", "left": "50vw", "top": "45vh", "width": "4vw" },
+            { "id": "3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
         ]
     }
   }

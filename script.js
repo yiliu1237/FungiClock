@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const mushrooms = document.querySelectorAll("#mushroom-container img");
+    const mushroomContainer = document.querySelector("#mushroom-container");
     const popup = document.getElementById("popup");
     const popupCloseButton = document.getElementById("popup-close");
     const collectedCountDisplay = document.getElementById("collected-count");
@@ -133,64 +133,133 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setFocusImage(); 
 
-    //Mushroom
+    // Define mushrooms with multiple images per group
+    const mushroomGroups = {
+        1: ["mushroom1", "mushroom2", "mushroom5", "mushroom7"],
+        2: ["mushroom3"],
+        3: ["mushroom4"],
+        4: ["mushroom6"],
+        5: ["mushroom8"],
+        6: ["mushroom9", "mushroom10"],
+        7: ["mushroom11", "mushroom12"],
+        8: ["mushroom13"],
+        9: ["mushroom14", "mushroom15"],
+        10: ["mushroom16", "mushroom17", "mushroom18", "mushroom19"],
+        11: ["mushroom20", "mushroom21", "mushroom22"]
+    };
+
+
     let collected = 0;
-    let total = mushrooms.length; // Total mushrooms
+    let total = document.querySelectorAll(".mushroom").length;
     totalCountDisplay.textContent = total; // Set total mushroom count
 
     let mushroomPositions = {}; 
-    // Load positions from JSON file
-    fetch("https://yiliu1237.github.io/Forest-Wander/mushroom_positions.json")
-        .then(response => response.json())
-        .then(data => {
-            mushroomPositions = data;
-            setMushroomPositions(); // Apply positions when page loads
-        })
-        .catch(error => console.error("Error loading mushroom positions:", error));
+    let sceneRemovedMushrooms = {}; // Stores removed mushrooms per scene
 
-
-    function setMushroomPositions() {
-        const period = getTimePeriod(); // Get current time period
-        const sceneKey = `scene${currentIndex}`;
-
-        // Hide ALL mushrooms first before updating the new scene
-        const allMushrooms = document.querySelectorAll("#mushroom-container img");
-        allMushrooms.forEach(mushroom => {
-            mushroom.style.visibility = "hidden"; // Reset all mushrooms to be invisible
-        });
-    
-        if (mushroomPositions[period] && mushroomPositions[period][sceneKey]) {
-            mushroomPositions[period][sceneKey].forEach(pos => {
-                const mushroom = document.getElementById(pos.id);
-                if (mushroom) {
-                    mushroom.style.left = pos.left;
-                    mushroom.style.top = pos.top;
-                    mushroom.style.width = pos.width;
-
-                    mushroom.style.visibility = "visible";
-                }
-            });
-        } 
+    function getSceneKey() {
+        return `scene${currentIndex}`;
     }
 
-    document.getElementById("change-focus").addEventListener("click", setMushroomPositions);
+    function getMushroomGroup(mushroomID) {
+        return Object.entries(mushroomGroups).find(([_, mushrooms]) => mushrooms.includes(mushroomID))?.[0] || null;
+    }
+    
 
+    /** Load Mushroom Positions */
+    function loadMushroomPositions() {
+        fetch("https://yiliu1237.github.io/Forest-Wander/mushroom_positions.json")
+            .then(response => response.json())
+            .then(data => {
+                mushroomPositions = data;
+                setMushroomPositions();
+            })
+            .catch(error => console.error("Error loading mushroom positions:", error));
+    }
+
+    // updateMushroom is called only once 
+    function setMushroomPositions() {
+        const period = getTimePeriod(); // Get current time period
+        const sceneKey = getSceneKey();
+
+        mushroomContainer.innerHTML = "";  // Clear old mushrooms
+
+        if (!mushroomPositions[period] || !mushroomPositions[period][sceneKey]) return;
+    
+
+        mushroomPositions[period][sceneKey].forEach(pos => {
+            const possibleMushrooms = mushroomGroups[pos.group];
+            if (!possibleMushrooms) return; // Skip if no mushrooms exist in the group
+
+            // Pick a random mushroom from the group
+            const randomMushroomID = possibleMushrooms[Math.floor(Math.random() * possibleMushrooms.length)];
+            const mushroomImageURL = `https://yiliu1237.github.io/Forest-Wander/mushroom_forest/interactive_objects/mushroom${randomMushroomID}.png`;
+
+            const mushroom = document.createElement("img");
+            mushroom.src = mushroomImageURL;
+            mushroom.classList.add("mushroom");
+            mushroom.setAttribute("data-group", pos.group);
+            mushroom.setAttribute("data-scene", sceneKey); 
+            mushroom.setAttribute("data-period", period);
+            mushroom.style.left = pos.left;
+            mushroom.style.top = pos.top;
+            mushroom.style.width = pos.width;
+            mushroom.style.position = "absolute"; // Ensure proper positioning
+            mushroom.style.display = "block";
+            mushroom.style.visibility = "visible";
+
+
+            // Click event for mushroom
+            mushroom.addEventListener("click", () => {
+                const sceneKey = getSceneKey();
+                const period = getTimePeriod();
+        
+                sceneRemovedMushrooms[period] ??= {};
+                sceneRemovedMushrooms[period][sceneKey] ??= new Set();;
+
+                sceneRemovedMushrooms[period][sceneKey].add(mushroom); 
+
+                mushroom.style.visibility = "hidden"; // Hide mushroom instead of removing
+                collected++;
+                collectedCountDisplay.textContent = collected;
+            });
+
+            mushroomContainer.appendChild(mushroom);
+        });
+    }
+
+    function regenerateMushrooms() {
+        const period = getTimePeriod();
+
+        if (!sceneRemovedMushrooms[period] || !sceneRemovedMushrooms[period][sceneKey]) return;
+
+        Object.keys(sceneRemovedMushrooms[period]).forEach(sceneKey => {
+            sceneRemovedMushrooms[period][sceneKey].forEach(mushroom => {
+                if (!mushroom) return;
+                const group = mushroom.dataset.group;
+                const possibleMushrooms = mushroomGroups[group];
+                if (!possibleMushrooms) return;
+
+                // Pick a new random mushroom image from the same group
+                const randomMushroomID = possibleMushrooms[Math.floor(Math.random() * possibleMushrooms.length)];
+                mushroom.src = `https://yiliu1237.github.io/Forest-Wander/mushroom_forest/interactive_objects/${randomMushroomID}.png`;
+
+                mushroom.style.visibility = "visible"; // Show the mushroom again
+            });
+
+            // Reset removed mushrooms for this scene
+            sceneRemovedMushrooms[period][sceneKey].clear();
+        });
+    }
+
+
+    // refreshes all mushrooms every minute
+    setInterval(regenerateMushrooms, 60000);
+    loadMushroomPositions();
 
 
     // Ensure the overlays are hidden on page load
     popup.classList.add("hidden");
     clockOverlay.classList.add("hidden");
-
-    // Click event for mushrooms
-    mushrooms.forEach(mushroom => {
-        mushroom.addEventListener("click", () => {
-            collected++;
-            collectedCountDisplay.textContent = collected;
-            mushroom.style.display = "none"; // Hide the mushroom
-            showPopup();
-        });
-    });
-
 
     popupCloseButton.addEventListener("click", closePopup);
 

@@ -131,7 +131,7 @@ Without !important, other CSS rules could accidentally override display: none;. 
 }
 
 #mushroom-container img {
-    visibility: hidden;
+    display: none;
     position: absolute;
     transform: translate(-50%, -50%);
     height: auto;
