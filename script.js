@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const popup = document.getElementById("popup");
     const popupCloseButton = document.getElementById("popup-close");
     const collectedCountDisplay = document.getElementById("collected-count");
-    const totalCountDisplay = document.getElementById("total-count");
     const clockOverlay = document.getElementById("clock-overlay");
     const clockTime = document.getElementById("clock-time");
     const clockDate = document.getElementById("clock-date");
@@ -128,6 +127,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (currentSet.length > 0) {
             currentIndex = (currentIndex + 1) % currentSet.length;
             setFocusImage();
+
+            setMushroomPositions();
         }
     });
 
@@ -144,14 +145,12 @@ document.addEventListener("DOMContentLoaded", () => {
         7: ["mushroom11", "mushroom12"],
         8: ["mushroom13"],
         9: ["mushroom14", "mushroom15"],
-        10: ["mushroom16", "mushroom17", "mushroom18", "mushroom19"],
-        11: ["mushroom20", "mushroom21", "mushroom22"]
+        10: ["mushroom16", "mushroom17", "mushroom19"], //"mushroom18"
+        11: ["mushroom20", "mushroom21"] // "mushroom22"
     };
 
 
     let collected = 0;
-    let total = document.querySelectorAll(".mushroom").length;
-    totalCountDisplay.textContent = total; // Set total mushroom count
 
     let mushroomPositions = {}; 
     let sceneRemovedMushrooms = {}; // Stores removed mushrooms per scene
@@ -161,20 +160,132 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function getMushroomGroup(mushroomType) {
-        return Object.entries(mushroomGroups).find(([_, mushrooms]) => mushrooms.includes(mushroomType))?.[0] || null;
+        const formattedType = `mushroom${mushroomType}`;
+        return Object.entries(mushroomGroups).find(([_, mushrooms]) => mushrooms.includes(formattedType))?.[0] || null;
     }
     
 
     /** Load Mushroom Positions */
     function loadMushroomPositions() {
-        fetch("https://yiliu1237.github.io/Forest-Wander/mushroom_positions.json")
-            .then(response => response.json())
-            .then(data => {
-                mushroomPositions = data;
-                console.log(data)
-                setMushroomPositions();
-            })
-            .catch(error => console.error("Error loading mushroom positions:", error));
+        // fetch("https://yiliu1237.github.io/Forest-Wander/mushroom_positions.json")
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         mushroomPositions = data;
+        //         console.log("mushroomPositions: ", data);
+
+        //         setMushroomPositions();
+        //     })
+        //     .catch(error => console.error("Error loading mushroom positions:", error));
+
+        const data = {
+            "morning": {
+                "scene0": [
+                    { "type": "2", "left": "84vw", "top": "53vh", "width": "3vw"},
+                    { "type": "3", "left": "16vw", "top": "57vh", "width": "8vw"},
+                    { "type": "4", "left": "37vw", "top": "41vh", "width": "5vw"},
+                    { "type": "5", "left": "22vw", "top": "57vh", "width": "10vw"}
+                ],
+                "scene1": [
+                    { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+                    { "type": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+                    { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
+                ],
+                "scene2": [
+                    { "type": "1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
+                    { "type": "2", "left": "50vw", "top": "45vh", "width": "4vw" },
+                    { "type": "3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+                ]
+            },
+            "noon": {
+                "scene0": [
+                    { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+                    { "type": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+                    { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
+                ],
+                "scene1": [
+                    { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+                    { "type": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+                    { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
+                ],
+                "scene2": [
+                    { "type": "1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
+                    { "type": "2", "left": "50vw", "top": "45vh", "width": "4vw" },
+                    { "type": "3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+                ]
+            },
+            "afternoon": {
+                "scene0": [
+                    { "type": "1", "left": "52vw", "top": "70vh", "width": "5vw"},
+                    { "type": "2", "left": "60vw", "top": "70vh", "width": "3.5vw" },
+                    { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
+                ],
+                "scene1": [
+                    { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+                    { "type": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+                    { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
+                ],
+                "scene2": [
+                    { "type": "1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
+                    { "type": "2", "left": "50vw", "top": "45vh", "width": "4vw" },
+                    { "type": "3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+                ]
+            },
+            "evening": {
+                "scene0": [
+                    { "type": "11", "left": "47vw", "top": "88vh", "width": "8vw"},
+                    { "type": "8", "left": "75vw", "top": "76vh", "width": "6vw" },
+                    { "type": "13", "left": "9vw", "top": "67vh", "width": "5vw" } //done
+                ],
+                "scene1": [
+                    { "type": "17", "left": "29vw", "top": "61vh", "width": "10vw"},
+                    { "type": "6", "left": "41vw", "top": "76vh", "width": "5vw" } //done
+                ],
+                "scene2": [
+                    { "type": "8", "left": "28vw", "top": "92vh", "width": "9vw" },
+                    { "type": "2", "left": "58vw", "top": "67vh", "width": "2.5vw" } //done
+                ]
+            },
+            "night": {
+                "scene0": [
+                    { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+                    { "type": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+                    { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
+                ],
+                "scene1": [
+                    { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+                    { "type": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+                    { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
+                ],
+                "scene2": [
+                    { "type": "1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
+                    { "type": "2", "left": "50vw", "top": "45vh", "width": "4vw" },
+                    { "type": "3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+                ]
+            },
+            "dawn": {
+                "scene0": [
+                    { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+                    { "type": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+                    { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
+                ],
+                "scene1": [
+                    { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+                    { "type": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+                    { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
+                ],
+                "scene2": [
+                    { "type": "1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
+                    { "type": "2", "left": "50vw", "top": "45vh", "width": "4vw" },
+                    { "type": "3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+                ]
+            }
+        };
+         
+        mushroomPositions = data;
+        console.log("mushroomPositions: ", data);
+
+
+        setMushroomPositions();
     }
 
     // updateMushroom is called only once 
@@ -184,19 +295,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         mushroomContainer.innerHTML = "";  // Clear old mushrooms
 
-        console.log(period)
-        console.log(sceneKey)
-
+        console.log(period);
+        console.log(sceneKey);
 
 
         if (!mushroomPositions[period] || !mushroomPositions[period][sceneKey]) return;
-    
+
 
         mushroomPositions[period][sceneKey].forEach(pos => {
-            console.log(pos.type)
             const mushroomImageURL = `https://yiliu1237.github.io/Forest-Wander/mushroom_forest/interactive_objects/mushroom${pos.type}.png`;
-            
-            console.log(mushroomImageURL)
             const mushroom = document.createElement("img");
             mushroom.src = mushroomImageURL;
             mushroom.classList.add("mushroom");
@@ -242,11 +349,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (!mushroom) return;
                 const type = mushroom.dataset.type;
 
-                console.log("mushroom type: ", type);
                 const group = getMushroomGroup(type);
-
-                console.log("regenerated mushroom group: ", group);
-                console.log(mushroomGroups[group])
 
                 //group number starts from 1
                 const possibleMushrooms = mushroomGroups[group];
@@ -270,7 +373,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // refreshes all mushrooms every minute
     //setInterval(regenerateMushrooms, 60000);
     setInterval(regenerateMushrooms, 600);
-    console.log("before load mushroom pos");
     loadMushroomPositions();
 
 
