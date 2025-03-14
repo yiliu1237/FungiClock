@@ -46,6 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
         settingsPanel.classList.add("hidden");
 
         setFocusImage();
+
+        setMushroomPositions();
     });
 
 
@@ -55,40 +57,42 @@ document.addEventListener("DOMContentLoaded", () => {
         now = new Date();
         settingsPanel.classList.add("hidden");
         setFocusImage();
+
+        setMushroomPositions();
     });
 
 
 
     const focusImages = {
         morning: [
-            "https://lh3.googleusercontent.com/d/16Y8meE7FBiKQDSGisBD1kpMZFyxh_kWe",
-            "https://lh3.googleusercontent.com/d/1WzgUZgJVOfC5wK8WbtXOoPXfa-pFGt6J",
-            "https://lh3.googleusercontent.com/d/1UogWV-dy1Ll8OB_PQmG1j4TQdEs7lnW7"
+            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/morning/mushroom_morning_scene1.png",
+            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/morning/mushroom_morning_scene2.png",
+            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/morning/mushroom_morning_scene3.png",
         ],
         noon: [
-            "https://lh3.googleusercontent.com/d/1RrAKGyhnco31hw2PpqQw4gwMhRofAlb4",
-            "https://lh3.googleusercontent.com/d/1qVW_itLmjGKRzqEgtFIjyWiNRaXUO4Ng",
-            "https://lh3.googleusercontent.com/d/1iQMaD0ob4u4-d0-GXszKGYYblInANHD4"
+            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/noon/mushroom_noon_scene1.png",
+            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/noon/mushroom_noon_scene2.png",
+            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/noon/mushroom_noon_scene3.png"
         ],
         afternoon: [
-            "https://lh3.googleusercontent.com/d/16901YHbEfi3tmO3aetmizSuZBhzGhFI1",
-            "https://lh3.googleusercontent.com/d/1wPkQAdkJIZbxZQS_UM_8Qi1ySJeaiLQP",
-            "https://lh3.googleusercontent.com/d/1HoeKCP5QZuDdvuOQt4gZORaZor7VjeiE"
+            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/afternoon/mushroom_afternoon_scene1.png",
+            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/afternoon/mushroom_afternoon_scene2.png",
+            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/afternoon/mushroom_afternoon_scene3.png"
         ],
         evening: [
-            "https://lh3.googleusercontent.com/d/1ByQZExswP6NQey4h7y8xK_-PPV9W4KjG",
-            "https://lh3.googleusercontent.com/d/1jZBfgqmMKcwjTWCO2UwXvvV_YomG1Yrq",
-            "https://lh3.googleusercontent.com/d/1VI7LU42obeE9O9W1jdaX--rD7dC6OZCR"
+            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/evening/mushroom_evening_scene1.png",
+            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/evening/mushroom_evening_scene2.png",
+            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/evening/mushroom_evening_scene3.png"
         ],
         night: [
-            "https://lh3.googleusercontent.com/d/1leuS-UAKMbtRdULQR27JbGpkER8m22mL",
-            "https://lh3.googleusercontent.com/d/1l-nrgp-h_VJljwcQarJv703XdWPFIzjG",
-            "https://lh3.googleusercontent.com/d/12eGi43nV_1dnyP7p0thsuyd26fPwc4GB"
+            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/nightfall/mushroom_nightfall_scene1.png",
+            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/nightfall/mushroom_nightfall_scene2.png",
+            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/nightfall/mushroom_nightfall_scene3.png"
         ],
         dawn: [
-            "https://lh3.googleusercontent.com/d/1aPtKOwnpJEQyIq3iH70UOW04kT_9fdWl",
-            "https://lh3.googleusercontent.com/d/1cLFsAYEILZ21rZzYLq3z04Gzh4lZhmMZ",
-            "https://lh3.googleusercontent.com/d/1nWInoUBjIdfAmieS-moBYcEGb9C5cnHR"
+            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/dawn/mushroom_dawn_scene1.png",
+            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/dawn/mushroom_dawn_scene2.png",
+            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/dawn/mushroom_dawn_scene3.png"
         ]
     };
 
@@ -183,34 +187,28 @@ document.addEventListener("DOMContentLoaded", () => {
                     { "type": "2", "left": "84vw", "top": "53vh", "width": "3vw"},
                     { "type": "3", "left": "16vw", "top": "57vh", "width": "8vw"},
                     { "type": "4", "left": "37vw", "top": "41vh", "width": "5vw"},
-                    { "type": "5", "left": "22vw", "top": "57vh", "width": "10vw"}
+                    { "type": "5", "left": "22vw", "top": "57vh", "width": "10vw"} //done
                 ],
                 "scene1": [
-                    { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
-                    { "type": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-                    { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
+                    { "type": "3", "left": "70vw", "top": "65vh", "width": "5vw" }, 
+                    { "type": "11", "left": "18vw", "top": "47vh", "width": "3vw" } //done
                 ],
                 "scene2": [
-                    { "type": "1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
-                    { "type": "2", "left": "50vw", "top": "45vh", "width": "4vw" },
-                    { "type": "3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+                    { "type": "6", "left": "76vw", "top": "91vh", "width": "5vw" } //done
                 ]
             },
             "noon": {
                 "scene0": [
-                    { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
-                    { "type": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-                    { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
+                    { "type": "16", "left": "20vw", "top": "92vh", "width": "8vw"},
+                    { "type": "7", "left": "72vw", "top": "90vh", "width": "3.5vw" } //done
                 ],
                 "scene1": [
-                    { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
-                    { "type": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-                    { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
+                    { "type": "1", "left": "82vw", "top": "66vh", "width": "5vw"},
+                    { "type": "2", "left": "16vw", "top": "72vh", "width": "3.5vw" } //done
                 ],
                 "scene2": [
-                    { "type": "1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
-                    { "type": "2", "left": "50vw", "top": "45vh", "width": "4vw" },
-                    { "type": "3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+                    { "type": "7", "left": "16vw", "top": "91vh", "width": "6vw" },
+                    { "type": "3", "left": "75vw", "top": "75vh", "width": "6vw" } //done
                 ]
             },
             "afternoon": {
@@ -247,36 +245,31 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             "night": {
                 "scene0": [
-                    { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
-                    { "type": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-                    { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
+                    { "type": "14", "left": "35vw", "top": "89vh", "width": "5vw"},
+                    { "type": "15", "left": "46.5vw", "top": "69vh", "width": "3vw" },
+                    { "type": "9", "left": "21vw", "top": "52vh", "width": "4vw" } //done
                 ],
                 "scene1": [
-                    { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
-                    { "type": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-                    { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
+                    { "type": "1", "left": "80vw", "top": "85vh", "width": "4vw"} //done
                 ],
                 "scene2": [
-                    { "type": "1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
-                    { "type": "2", "left": "50vw", "top": "45vh", "width": "4vw" },
-                    { "type": "3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+                    { "type": "5", "left": "80vw", "top": "92vh", "width": "4vw" },
+                    { "type": "13", "left": "26vw", "top": "76vh", "width": "4vw" } //done
                 ]
             },
             "dawn": {
                 "scene0": [
-                    { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
-                    { "type": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-                    { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
+                    { "type": "8", "left": "93vw", "top": "89vh", "width": "8vw"},
+                    { "type": "2", "left": "32vw", "top": "92vh", "width": "3vw" } //done
                 ],
                 "scene1": [
-                    { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
-                    { "type": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-                    { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
+                    { "type": "9", "left": "71vw", "top": "91vh", "width": "10vw"},
+                    { "type": "4", "left": "29vw", "top": "90vh", "width": "9vw" } //done
                 ],
                 "scene2": [
-                    { "type": "1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
-                    { "type": "2", "left": "50vw", "top": "45vh", "width": "4vw" },
-                    { "type": "3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+                    { "type": "14", "left": "19vw", "top": "88vh", "width": "12vw" },
+                    { "type": "15", "left": "86vw", "top": "89vh", "width": "10vw" },
+                    { "type": "10", "left": "62vw", "top": "77vh", "width": "5vw" } //done
                 ]
             }
         };
