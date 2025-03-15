@@ -100,7 +100,9 @@ Without !important, other CSS rules could accidentally override display: none;. 
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
 }
+
 
 #popup-content p {
     font-size: 18px;
@@ -220,8 +222,109 @@ Without !important, other CSS rules could accidentally override display: none;. 
 
 
 
+.mushroom-clicked {
+    animation: pop 0.3s ease-in-out;
+}
+
+
+
+/* Style for the Start Focus Button */
+#start-focus {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    background: #28a745;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#start-focus:hover {
+    background: #218838;
+}
+
+/* Overlay for Focus Timer */
+#focus-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 3000;
+}
+
+/* Focus Timer Countdown */
+#focus-timer-display {
+    font-size: 100px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Focus Settings Panel */
+#focus-settings-panel,
+#focus-summary {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 3000;
+}
+
+
+/* Stop Focus Button */
+#stop-focus {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    background: #dc3545;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#stop-focus:hover {
+    background: #b02a37;
+}
+
+
+
+/* Hide elements */
+.hidden {
+    display: none !important;
+}
+
+
+
 
 @keyframes fadeOut {
     0% { opacity: 1; }
     100% { opacity: 0; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -55%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(0); }
 }

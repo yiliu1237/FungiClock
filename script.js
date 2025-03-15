@@ -21,6 +21,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const setRealTimeButton = document.getElementById("set-real-time");
     const closeSettingsButton = document.getElementById("close-settings");
 
+
+    //focus mode
+    const startFocusButton = document.getElementById("start-focus");
+    const focusOverlay = document.getElementById("focus-overlay");
+    const focusTimerDisplay = document.getElementById("focus-timer-display");
+    const focusCat = document.getElementById("focus-cat");
+    const focusSettingsPanel = document.getElementById("focus-settings-panel");
+    const confirmFocusTimeButton = document.getElementById("confirm-focus-time");
+    const closeFocusSettingsButton = document.getElementById("close-focus-settings");
+    const focusTimeInput = document.getElementById("focus-time");
+    const focusSummary = document.getElementById("focus-summary");
+    const focusSummaryText = document.getElementById("focus-summary-text");
+    const closeSummaryButton = document.getElementById("close-summary");
+    const stopFocusButton = document.getElementById("stop-focus");
+
+
     let now = new Date();
 
     // Open Settings Panel
@@ -213,9 +229,8 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             "afternoon": {
                 "scene0": [
-                    { "type": "1", "left": "52vw", "top": "70vh", "width": "5vw"},
-                    { "type": "2", "left": "60vw", "top": "70vh", "width": "3.5vw" },
-                    { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
+                    { "type": "6", "left": "62vw", "top": "93vh", "width": "5vw"},
+                    { "type": "7", "left": "28vw", "top": "70vh", "width": "8vw" } //done
                 ],
                 "scene1": [
                     { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
@@ -223,9 +238,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
                 ],
                 "scene2": [
-                    { "type": "1", "left": "30vw", "top": "60vh", "width": "4.5vw" },
-                    { "type": "2", "left": "50vw", "top": "45vh", "width": "4vw" },
-                    { "type": "3", "left": "75vw", "top": "65vh", "width": "5.5vw" }
+                    { "type": "17", "left": "15vw", "top": "58vh", "width": "9vw" },
+                    { "type": "21", "left": "79vw", "top": "84vh", "width": "8vw" } //done
                 ]
             },
             "evening": {
@@ -365,7 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // refreshes all mushrooms every minute
     //setInterval(regenerateMushrooms, 60000);
-    setInterval(regenerateMushrooms, 600);
+    setInterval(regenerateMushrooms, 6000);
     loadMushroomPositions();
 
 
@@ -448,4 +462,138 @@ document.addEventListener("DOMContentLoaded", () => {
         clockTime.style.color = averageColor;
         clockDate.style.color = averageColor;
     }
+
+
+
+
+    // cat animation 
+    const images = ["cat1.png", "cat2.png", "cat3.png", "cat4.png"];
+    let index = 0;
+    const cat = document.getElementById("cat");
+
+    function animateCat() {
+        cat.src = images[index];
+        index = (index + 1) % images.length; // Loops through images
+    }
+
+    setInterval(animateCat, 300); // Change frame every 300ms
+
+
+    let focusTimeLeft = 0; // Countdown in seconds
+    let totalFocusTime = 0; // Stores initially set time
+    let focusInterval;
+    let collectedMushrooms = {}; // Tracks mushroom types and counts
+    let startTime; // Stores the start timestamp
+
+    // Open Focus Settings Panel
+    startFocusButton.addEventListener("click", () => {
+        focusSettingsPanel.classList.remove("hidden");
+    });
+
+    // Close Focus Settings Panel
+    closeFocusSettingsButton.addEventListener("click", () => {
+        focusSettingsPanel.classList.add("hidden");
+    });
+
+    // Start Focus Timer
+    confirmFocusTimeButton.addEventListener("click", () => {
+        let minutes = parseInt(focusTimeInput.value);
+        if (minutes < 10 || minutes > 180) {
+            alert("Please select a time between 10 minutes and 3 hours.");
+            return;
+        }
+
+        totalFocusTime = minutes * 60; // Convert minutes to seconds
+        focusTimeLeft = totalFocusTime;
+        collectedMushrooms = {}; // Reset collection tracking
+        startTime = Date.now(); // Capture start time
+
+        focusSettingsPanel.classList.add("hidden");
+        focusOverlay.classList.remove("hidden");
+
+        startFocusCountdown();
+    });
+
+    // Start Countdown Timer
+    function startFocusCountdown() {
+        updateFocusDisplay();
+
+        focusInterval = setInterval(() => {
+            focusTimeLeft--;
+
+            if (focusTimeLeft <= 0) {
+                clearInterval(focusInterval);
+                endFocusSession();
+            } else {
+                updateFocusDisplay();
+                collectMushroomAutomatically();
+            }
+        }, 1000);
+    }
+
+    // Update Timer Display
+    function updateFocusDisplay() {
+        let hours = Math.floor(focusTimeLeft / 3600);
+        let minutes = Math.floor((focusTimeLeft % 3600) / 60);
+        let seconds = focusTimeLeft % 60;
+
+        focusTimerDisplay.textContent = 
+            `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    }
+
+    // Automatically Collect Mushrooms
+    function collectMushroomAutomatically() {
+        const mushroomTypes = Object.keys(mushroomGroups);
+        const randomGroup = mushroomTypes[Math.floor(Math.random() * mushroomTypes.length)];
+        const randomMushroom = mushroomGroups[randomGroup][Math.floor(Math.random() * mushroomGroups[randomGroup].length)];
+
+        collectedMushrooms[randomMushroom] = (collectedMushrooms[randomMushroom] || 0) + 1;
+    }
+
+    // Stop Focus Session Early
+    stopFocusButton.addEventListener("click", () => {
+        let elapsedTime = Math.floor((Date.now() - startTime) / 1000); // Convert to seconds
+        let completedRatio = elapsedTime / totalFocusTime; // Calculate completion %
+
+        // Scale collected mushrooms based on elapsed time
+        Object.keys(collectedMushrooms).forEach((mushroom) => {
+            collectedMushrooms[mushroom] = Math.round(collectedMushrooms[mushroom] * completedRatio);
+        });
+
+        clearInterval(focusInterval);
+        endFocusSession();
+    });
+
+    // End Focus Session
+    function endFocusSession() {
+        focusOverlay.classList.add("hidden");
+        focusSummary.classList.remove("hidden");
+
+        let summaryText = "You collected:\n";
+        Object.entries(collectedMushrooms).forEach(([mushroom, count]) => {
+            summaryText += `${mushroom}: ${count} 🍄\n`;
+        });
+
+        focusSummaryText.textContent = summaryText;
+    }
+
+    // Close Summary
+    closeSummaryButton.addEventListener("click", () => {
+        focusSummary.classList.add("hidden");
+    });
+
+    // Animate Cat During Focus Session
+    const catImages = ["https://yiliu1237.github.io/Forest-Wander/mushroom_forest/cats/cat1.png", 
+        "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/cats/cat2.png", 
+        "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/cats/cat3.png", 
+        "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/cats/cat4.png"];
+    let catIndex = 0;
+    
+    function animateFocusCat() {
+        focusCat.src = catImages[catIndex];
+        catIndex = (catIndex + 1) % catImages.length;
+    }
+    
+    setInterval(animateFocusCat, 300);
+
 });

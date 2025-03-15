@@ -54,6 +54,38 @@
     </div>
 
 
+    <img id="cat" src="https://yiliu1237.github.io/Forest-Wander/mushroom_forest/cats/cat1.png" width="200">
+
+
+    <!-- Button to Start Focus Timer -->
+    <button id="start-focus">Start Focus Session</button>
+
+    <!-- Focus Timer Overlay (Updated) -->
+    <div id="focus-overlay" class="hidden">
+        <p id="focus-timer-display">00:00:00</p>
+        <img id="focus-cat" src="cat1.png" width="200">
+        <button id="stop-focus"> Stop Focus</button>
+    </div>
+
+    <!-- Focus Timer Selection Panel -->
+    <div id="focus-settings-panel" class="hidden">
+        <h3>Set Focus Duration</h3>
+        <label for="focus-time">Choose Time (10 min - 3h):</label>
+        <input type="number" id="focus-time" min="10" max="180" value="30"> minutes
+        <br>
+        <button id="confirm-focus-time">Start</button>
+        <button id="close-focus-settings">Cancel</button>
+    </div>
+
+    <!-- End of Focus Summary -->
+    <div id="focus-summary" class="hidden">
+        <h3>Focus Session Complete!</h3>
+        <p id="focus-summary-text"></p>
+        <button id="close-summary">OK</button>
+    </div>
+
+
+
     <script src="script.js"></script>
 </body>
 </html>
