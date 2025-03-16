@@ -271,7 +271,7 @@ Without !important, other CSS rules could accidentally override display: none;. 
 }
 
 /* Focus Settings Panel */
-#focus-settings-panel,
+#focus-settings-panel, 
 #focus-summary {
     position: fixed;
     top: 50%;
@@ -283,6 +283,31 @@ Without !important, other CSS rules could accidentally override display: none;. 
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     z-index: 3000;
+}
+
+
+
+#focus-settings-panel h1 {
+    font-size: 18px;  /* make title smaller */
+    font-weight: bold;
+    margin-bottom: 5px;  /* reduce space between title and next element */
+}
+
+#focus-settings-panel label {
+    display: inline-block;  /* keeps label and input on the same line */
+    font-size: 15px;
+    vertical-align: middle; /* aligns label properly */
+    margin-top: 0px;
+    margin-bottom: 14px;
+}
+
+#focus-settings-panel input {
+    display: inline-block;  /* keeps input next to label */
+    font-size: 14px;
+    width: 70px; 
+    margin-left: 5px; /* adds small space between label & input */
+    padding: 2px;
+    text-align: center;
 }
 
 
@@ -303,6 +328,13 @@ Without !important, other CSS rules could accidentally override display: none;. 
 }
 
 
+#focus-settings-panel button {
+    font-size: 14px;  
+    padding: 8px 14px;  
+    border-radius: 6px;
+    cursor: pointer;
+}
+
 
 /* Hide elements */
 .hidden {
@@ -310,7 +342,9 @@ Without !important, other CSS rules could accidentally override display: none;. 
 }
 
 
-
+#focus-cat {
+    transition: opacity 0.5s ease-in-out; /* Smooth fade effect over 0.5s */
+}
 
 @keyframes fadeOut {
     0% { opacity: 1; }

@@ -587,13 +587,24 @@ document.addEventListener("DOMContentLoaded", () => {
         "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/cats/cat2.png", 
         "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/cats/cat3.png", 
         "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/cats/cat4.png"];
+
     let catIndex = 0;
-    
+    let catAnimating = false;
+        
     function animateFocusCat() {
-        focusCat.src = catImages[catIndex];
-        catIndex = (catIndex + 1) % catImages.length;
+        if (catAnimating) return; // Prevent overlapping animations
+        catAnimating = true;
+        
+        focusCat.style.opacity = "0"; // Start fade-out
+        setTimeout(() => {
+            catIndex = (catIndex + 1) % catImages.length;
+            focusCat.src = catImages[catIndex];
+            focusCat.style.opacity = "1"; // Fade-in effect
+        
+            catAnimating = false;
+        }, 300); // Adjust transition delay
     }
-    
-    setInterval(animateFocusCat, 300);
+        
+    setInterval(animateFocusCat, 1000);       
 
 });
