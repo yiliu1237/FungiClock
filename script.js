@@ -77,34 +77,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const focusImages = {
         morning: [
-            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/morning/mushroom_morning_scene1.png",
-            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/morning/mushroom_morning_scene2.png",
-            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/morning/mushroom_morning_scene3.png",
+            "https://yiliu1237.github.io/FungiClock/mushroom_forest/backgrounds/morning/mushroom_morning_scene1.png",
+            "https://yiliu1237.github.io/FungiClock/mushroom_forest/backgrounds/morning/mushroom_morning_scene2.png",
+            "https://yiliu1237.github.io/FungiClock/mushroom_forest/backgrounds/morning/mushroom_morning_scene3.png",
         ],
         noon: [
-            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/noon/mushroom_noon_scene1.png",
-            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/noon/mushroom_noon_scene2.png",
-            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/noon/mushroom_noon_scene3.png"
+            "https://yiliu1237.github.io/FungiClock/mushroom_forest/backgrounds/noon/mushroom_noon_scene1.png",
+            "https://yiliu1237.github.io/FungiClock/mushroom_forest/backgrounds/noon/mushroom_noon_scene2.png",
+            "https://yiliu1237.github.io/FungiClock/mushroom_forest/backgrounds/noon/mushroom_noon_scene3.png"
         ],
         afternoon: [
-            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/afternoon/mushroom_afternoon_scene1.png",
-            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/afternoon/mushroom_afternoon_scene2.png",
-            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/afternoon/mushroom_afternoon_scene3.png"
+            "https://yiliu1237.github.io/FungiClock/mushroom_forest/backgrounds/afternoon/mushroom_afternoon_scene1.png",
+            "https://yiliu1237.github.io/FungiClock/mushroom_forest/backgrounds/afternoon/mushroom_afternoon_scene2.png",
+            "https://yiliu1237.github.io/FungiClock/mushroom_forest/backgrounds/afternoon/mushroom_afternoon_scene3.png"
         ],
         evening: [
-            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/evening/mushroom_evening_scene1.png",
-            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/evening/mushroom_evening_scene2.png",
-            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/evening/mushroom_evening_scene3.png"
+            "https://yiliu1237.github.io/FungiClock/mushroom_forest/backgrounds/evening/mushroom_evening_scene1.png",
+            "https://yiliu1237.github.io/FungiClock/mushroom_forest/backgrounds/evening/mushroom_evening_scene2.png",
+            "https://yiliu1237.github.io/FungiClock/mushroom_forest/backgrounds/evening/mushroom_evening_scene3.png"
         ],
         night: [
-            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/nightfall/mushroom_nightfall_scene1.png",
-            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/nightfall/mushroom_nightfall_scene2.png",
-            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/nightfall/mushroom_nightfall_scene3.png"
+            "https://yiliu1237.github.io/FungiClock/mushroom_forest/backgrounds/nightfall/mushroom_nightfall_scene1.png",
+            "https://yiliu1237.github.io/FungiClock/mushroom_forest/backgrounds/nightfall/mushroom_nightfall_scene2.png",
+            "https://yiliu1237.github.io/FungiClock/mushroom_forest/backgrounds/nightfall/mushroom_nightfall_scene3.png"
         ],
         dawn: [
-            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/dawn/mushroom_dawn_scene1.png",
-            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/dawn/mushroom_dawn_scene2.png",
-            "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/backgrounds/dawn/mushroom_dawn_scene3.png"
+            "https://yiliu1237.github.io/FungiClock/mushroom_forest/backgrounds/dawn/mushroom_dawn_scene1.png",
+            "https://yiliu1237.github.io/FungiClock/mushroom_forest/backgrounds/dawn/mushroom_dawn_scene2.png",
+            "https://yiliu1237.github.io/FungiClock/mushroom_forest/backgrounds/dawn/mushroom_dawn_scene3.png"
         ]
     };
 
@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /** Load Mushroom Positions */
     function loadMushroomPositions() {
-        // fetch("https://yiliu1237.github.io/Forest-Wander/mushroom_positions.json")
+        // fetch("https://yiliu1237.github.io/FungiClock/mushroom_positions.json")
         //     .then(response => response.json())
         //     .then(data => {
         //         mushroomPositions = data;
@@ -321,7 +321,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         mushroomPositions[period][sceneKey].forEach(pos => {
-            const mushroomImageURL = `https://yiliu1237.github.io/Forest-Wander/mushroom_forest/interactive_objects/mushroom${pos.type}.png`;
+            const mushroomImageURL = `https://yiliu1237.github.io/FungiClock/mushroom_forest/interactive_objects/mushroom${pos.type}.png`;
             const mushroom = document.createElement("img");
             mushroom.src = mushroomImageURL;
             mushroom.classList.add("mushroom");
@@ -375,7 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Pick a new random mushroom image from the same group
                 const randomMushroomID = possibleMushrooms[Math.floor(Math.random() * possibleMushrooms.length)];
-                mushroom.src = `https://yiliu1237.github.io/Forest-Wander/mushroom_forest/interactive_objects/${randomMushroomID}.png`;
+                mushroom.src = `https://yiliu1237.github.io/FungiClock/mushroom_forest/interactive_objects/${randomMushroomID}.png`;
 
                 mushroom.style.visibility = "visible"; // Show the mushroom again
 
@@ -649,7 +649,7 @@ document.addEventListener("DOMContentLoaded", () => {
         summaryHTML += `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 10px; text-align: center;">`;
     
         Object.entries(mushroomGroupCounts).forEach(([group, count]) => {
-            let imageURL = `https://yiliu1237.github.io/Forest-Wander/mushroom_forest/interactive_objects/${mushroomGroupIcon[group]}.png`;
+            let imageURL = `https://yiliu1237.github.io/FungiClock/mushroom_forest/interactive_objects/${mushroomGroupIcon[group]}.png`;
     
             summaryHTML += `
                 <div style="display: flex; flex-direction: column; align-items: center;">
@@ -677,10 +677,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Animate Cat During Focus Session
-    const catImages = ["https://yiliu1237.github.io/Forest-Wander/mushroom_forest/cats/cat1.png", 
-        "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/cats/cat2.png", 
-        "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/cats/cat3.png", 
-        "https://yiliu1237.github.io/Forest-Wander/mushroom_forest/cats/cat4.png"];
+    const catImages = ["https://yiliu1237.github.io/FungiClock/mushroom_forest/cats/cat1.png", 
+        "https://yiliu1237.github.io/FungiClock/mushroom_forest/cats/cat2.png", 
+        "https://yiliu1237.github.io/FungiClock/mushroom_forest/cats/cat3.png", 
+        "https://yiliu1237.github.io/FungiClock/mushroom_forest/cats/cat4.png"];
 
     let catIndex = 0;
     let catAnimating = false;
