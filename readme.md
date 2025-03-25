@@ -1,4 +1,4 @@
-# Interactive Clock with Focus Mode & Mushroom Collection
+# FungiClock: Interactive Clock with Focus Mode & Mushroom Collection
 
 ## Overview
 This project is an **interactive clock**, where the background transitions based on real-time changes, and players can interact with the environment by collecting mushrooms. It also includes a **focus mode** for a distraction-free experience.
