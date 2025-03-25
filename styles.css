@@ -20,19 +20,43 @@ body {
     gap: 10px;
 }
 
-#show-clock {
+
+/* Style for all buttons inside collection-log */
+#collection-log button {
     padding: 5px 10px;
     font-size: 14px;
     border: none;
-    background: #008CBA;
     color: white;
     border-radius: 5px;
     cursor: pointer;
 }
 
+
+#show-clock {
+    background: #008CBA;
+}
+
 #show-clock:hover {
     background: #0077A3;
 }
+
+#change-focus {
+    background: #ea890b; 
+}
+
+#change-focus:hover {
+    background: #df7722;
+}
+
+#start-focus {
+    background: #28a745; 
+}
+
+#start-focus:hover {
+    background: #218838;
+}
+
+
 
 /* Semi-Transparent Overlay */
 #clock-overlay {
@@ -227,25 +251,6 @@ Without !important, other CSS rules could accidentally override display: none;. 
 }
 
 
-
-/* Style for the Start Focus Button */
-#start-focus {
-    position: absolute;
-    top: 60px;
-    left: 20px;
-    padding: 8px 12px;
-    font-size: 14px;
-    border: none;
-    background: #28a745;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#start-focus:hover {
-    background: #218838;
-}
-
 /* Overlay for Focus Timer */
 #focus-overlay {
     display: none;
@@ -345,6 +350,9 @@ Without !important, other CSS rules could accidentally override display: none;. 
 #focus-cat {
     transition: opacity 0.5s ease-in-out; /* Smooth fade effect over 0.5s */
 }
+
+
+
 
 @keyframes fadeOut {
     0% { opacity: 1; }

@@ -62,8 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
         settingsPanel.classList.add("hidden");
 
         setFocusImage();
-
-        setMushroomPositions();
     });
 
 
@@ -73,8 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
         now = new Date();
         settingsPanel.classList.add("hidden");
         setFocusImage();
-
-        setMushroomPositions();
     });
 
 
@@ -140,6 +136,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         focusImage.onload = () => {
             getAverageBackgroundColor();
+
+            setMushroomPositions();
         };
     }
 
@@ -147,8 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (currentSet.length > 0) {
             currentIndex = (currentIndex + 1) % currentSet.length;
             setFocusImage();
-
-            setMushroomPositions();
         }
     });
 
@@ -167,6 +163,21 @@ document.addEventListener("DOMContentLoaded", () => {
         9: ["mushroom14", "mushroom15"],
         10: ["mushroom16", "mushroom17", "mushroom19"], //"mushroom18"
         11: ["mushroom20", "mushroom21"] // "mushroom22"
+    };
+
+
+    const mushroomGroupIcon = {
+        1: ["mushroom1"],
+        2: ["mushroom3"],
+        3: ["mushroom4"],
+        4: ["mushroom6"],
+        5: ["mushroom8"],
+        6: ["mushroom9"],
+        7: ["mushroom11"],
+        8: ["mushroom13"],
+        9: ["mushroom14"],
+        10: ["mushroom18"], 
+        11: ["mushroom22"]
     };
 
 
@@ -379,8 +390,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // refreshes all mushrooms every minute
     //setInterval(regenerateMushrooms, 60000);
-    setInterval(regenerateMushrooms, 6000);
+    // setInterval(regenerateMushrooms, 6000);
     loadMushroomPositions();
+
+    // Function to schedule regeneration at 0s and 30s of every minute
+    function scheduleRegeneration() {
+        function runRegeneration() {
+            regenerateMushrooms();
+            console.log("Mushroom regeneration triggered at:", new Date().toLocaleTimeString());
+        }
+
+        function scheduleNextRun() {
+            const now = new Date();
+            const seconds = now.getSeconds();
+            let timeToNextRun;
+
+            if (seconds < 30) {
+                timeToNextRun = (30 - seconds) * 1000; // Wait until 30 seconds
+            } else {
+            timeToNextRun = (60 - seconds) * 1000; // Wait until the next minute (0s)
+            }
+
+            setTimeout(() => {
+                runRegeneration();
+                scheduleNextRun(); // Recursively schedule next run
+            }, timeToNextRun);
+        }
+
+        scheduleNextRun(); // Start the scheduling loop
+    }
+
+    scheduleRegeneration();
 
 
     // Ensure the overlays are hidden on page load
@@ -465,20 +505,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-    // cat animation 
-    const images = ["cat1.png", "cat2.png", "cat3.png", "cat4.png"];
-    let index = 0;
-    const cat = document.getElementById("cat");
-
-    function animateCat() {
-        cat.src = images[index];
-        index = (index + 1) % images.length; // Loops through images
-    }
-
-    setInterval(animateCat, 300); // Change frame every 300ms
-
-
     let focusTimeLeft = 0; // Countdown in seconds
     let totalFocusTime = 0; // Stores initially set time
     let focusInterval;
@@ -542,13 +568,62 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Automatically Collect Mushrooms
-    function collectMushroomAutomatically() {
-        const mushroomTypes = Object.keys(mushroomGroups);
-        const randomGroup = mushroomTypes[Math.floor(Math.random() * mushroomTypes.length)];
-        const randomMushroom = mushroomGroups[randomGroup][Math.floor(Math.random() * mushroomGroups[randomGroup].length)];
+    let automaticCollectedMushrooms = 0;
+    let mushroomGroupCounts = {}; 
+    const MushroomsPerSecond = 1;
 
-        collectedMushrooms[randomMushroom] = (collectedMushrooms[randomMushroom] || 0) + 1;
+    function collectMushroomAutomatically() {
+        const period = getTimePeriod();
+        const sceneKeys = Object.keys(mushroomPositions[period]);
+    
+        sceneKeys.forEach(sceneKey => {
+            if (mushroomPositions[period][sceneKey]) {
+                mushroomPositions[period][sceneKey].forEach(mushroom => {
+                    const type = mushroom.type;  // Use mushroom.type instead of dataset.type
+                    const group = getMushroomGroup(type);
+    
+                    if (group) {
+                        mushroomGroupCounts[group] = (mushroomGroupCounts[group] || 0) + 1;
+                        automaticCollectedMushrooms++;
+                    }
+                });
+            }
+        });
+    
+        // Determine mushrooms collected based on time and frequency
+        let MushroomCollectedElapsedTime = Math.floor((totalFocusTime - focusTimeLeft) * MushroomsPerSecond);
+
+        Object.keys(mushroomGroupCounts).forEach(group => {
+            let perGroupCollected = Math.floor(mushroomGroupCounts[group] * MushroomCollectedElapsedTime);
+        
+            const possibleMushrooms = mushroomGroups[group];
+            if (possibleMushrooms) {
+                // Distribute mushrooms fairly among the available types
+                let mushroomsPerType = Math.floor(perGroupCollected / possibleMushrooms.length);
+        
+                possibleMushrooms.forEach(mushroomType => {
+                    collectedMushrooms[mushroomType] = (collectedMushrooms[mushroomType] || 0) + mushroomsPerType;
+                });
+        
+                // Handle any leftover mushrooms due to rounding
+                let remainingMushrooms = perGroupCollected % possibleMushrooms.length;
+                for (let i = 0; i < remainingMushrooms; i++) {
+                    let extraMushroom = possibleMushrooms[Math.floor(Math.random() * possibleMushrooms.length)];
+                    collectedMushrooms[extraMushroom] = (collectedMushrooms[extraMushroom] || 0) + 1;
+                }
+            }
+        });
+    
+
+        // // Update the total collected mushrooms counter //Incorrect place!!
+        // collected += automaticCollectedMushrooms;
+        // console.log("automaticCollectedMushrooms:", automaticCollectedMushrooms);
+        // collectedCountDisplay.textContent = collected;
+
+        console.log("Mushrooms collected automatically:", collectedMushrooms);
     }
+    
+
 
     // Stop Focus Session Early
     stopFocusButton.addEventListener("click", () => {
@@ -564,18 +639,37 @@ document.addEventListener("DOMContentLoaded", () => {
         endFocusSession();
     });
 
-    // End Focus Session
+
     function endFocusSession() {
         focusOverlay.classList.add("hidden");
         focusSummary.classList.remove("hidden");
-
-        let summaryText = "You collected:\n";
-        Object.entries(collectedMushrooms).forEach(([mushroom, count]) => {
-            summaryText += `${mushroom}: ${count} 🍄\n`;
+    
+        let summaryHTML = "<h3>You collected:</h3>";
+    
+        summaryHTML += `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 10px; text-align: center;">`;
+    
+        Object.entries(mushroomGroupCounts).forEach(([group, count]) => {
+            let imageURL = `https://yiliu1237.github.io/Forest-Wander/mushroom_forest/interactive_objects/${mushroomGroupIcon[group]}.png`;
+    
+            summaryHTML += `
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="${imageURL}" style="width: 50px; height: 50px; object-fit: cover;">
+                    <span style="font-size: 16px; font-weight: bold;">x${count}</span>
+                </div>
+            `;
         });
+    
+        summaryHTML += `</div>`; // Close the grid div
+    
+        focusSummaryText.innerHTML = summaryHTML; // Insert HTML into the summary
 
-        focusSummaryText.textContent = summaryText;
+        // Update the total collected mushrooms counter
+        collected += automaticCollectedMushrooms;
+        console.log("automaticCollectedMushrooms:", automaticCollectedMushrooms);
+        collectedCountDisplay.textContent = collected;
     }
+
+
 
     // Close Summary
     closeSummaryButton.addEventListener("click", () => {
