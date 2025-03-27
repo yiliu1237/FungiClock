@@ -468,19 +468,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Start Countdown Timer
     function startFocusCountdown() {
-        updateFocusDisplay();
-
-        focusInterval = setInterval(() => {
-            focusTimeLeft--;
-
-            if (focusTimeLeft <= 0) {
-                clearInterval(focusInterval);
-                endFocusSession();
+        const startTimestamp = Date.now();
+        const targetTimestamp = startTimestamp + focusTimeLeft * 1000;
+    
+        function update() {
+            const now = Date.now();
+            focusTimeLeft = Math.max(0, Math.floor((targetTimestamp - now) / 1000));
+    
+            updateFocusDisplay();
+    
+            if (focusTimeLeft > 0) {
+                requestAnimationFrame(update); // Use requestAnimationFrame instead of setTimeout/setInterval (JavaScript's setInterval being throttled when the page is inactive)
             } else {
-                updateFocusDisplay();
+                endFocusSession();
             }
-        }, 1000);
+        }
+    
+        update(); // Start the loop
     }
+     
 
     // Update Timer Display
     function updateFocusDisplay() {
