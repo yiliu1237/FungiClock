@@ -194,6 +194,26 @@ document.addEventListener("DOMContentLoaded", () => {
         const formattedType = `mushroom${mushroomType}`;
         return Object.entries(mushroomGroups).find(([_, mushrooms]) => mushrooms.includes(formattedType))?.[0] || null;
     }
+
+
+    function getNumMushroomsInPeriod(sceneKeys, period){
+        let mushroomGroupCounts = {};
+        
+        sceneKeys.forEach(sceneKey => {
+            if (mushroomPositions[period][sceneKey]) {
+                mushroomPositions[period][sceneKey].forEach(mushroom => {
+                    const type = mushroom.type;  // Use mushroom.type instead of dataset.type
+                    const group = getMushroomGroup(type);
+    
+                    if (group) {
+                        mushroomGroupCounts[group] = (mushroomGroupCounts[group] || 0) + 1;
+                    }
+                });
+            }
+        });
+
+        return mushroomGroupCounts;
+    }
     
 
     /** Load Mushroom Positions */
@@ -458,7 +478,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 endFocusSession();
             } else {
                 updateFocusDisplay();
-                collectMushroomAutomatically();
             }
         }, 1000);
     }
@@ -474,30 +493,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Automatically Collect Mushrooms
-    let automaticCollectedMushrooms = 0;
+    let NumMushroomInScene = 0;
     let mushroomGroupCounts = {}; 
     const MushroomsPerSecond = 1./60.;
+    // const MushroomsPerSecond = 1; //testing
 
-    function collectMushroomAutomatically() {
+
+    function countAutomaticCollectedMushrooms() {
         const period = getTimePeriod();
         const sceneKeys = Object.keys(mushroomPositions[period]);
-    
-        sceneKeys.forEach(sceneKey => {
-            if (mushroomPositions[period][sceneKey]) {
-                mushroomPositions[period][sceneKey].forEach(mushroom => {
-                    const type = mushroom.type;  // Use mushroom.type instead of dataset.type
-                    const group = getMushroomGroup(type);
-    
-                    if (group) {
-                        mushroomGroupCounts[group] = (mushroomGroupCounts[group] || 0) + 1;
-                        automaticCollectedMushrooms++;
-                    }
-                });
-            }
-        });
+
+        mushroomGroupCounts = getNumMushroomsInPeriod(sceneKeys, period);
+
+        const NumMushroomInScene = Object.values(mushroomGroupCounts).reduce((sum, count) => sum + count, 0);
     
         // Determine mushrooms collected based on time and frequency
         let MushroomCollectedElapsedTime = Math.floor((totalFocusTime - focusTimeLeft) * MushroomsPerSecond);
+
+        console.log("MushroomCollectedElapsedTime: ", MushroomCollectedElapsedTime)
 
         Object.keys(mushroomGroupCounts).forEach(group => {
             let perGroupCollected = Math.floor(mushroomGroupCounts[group] * MushroomCollectedElapsedTime);
@@ -521,11 +534,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     
 
-        // // Update the total collected mushrooms counter //Incorrect place!!
-        // collected += automaticCollectedMushrooms;
-        // console.log("automaticCollectedMushrooms:", automaticCollectedMushrooms);
-        // collectedCountDisplay.textContent = collected;
-
+        // Update the total collected mushrooms counter
+        collected += MushroomCollectedElapsedTime * NumMushroomInScene;
+        collectedCountDisplay.textContent = collected;
         console.log("Mushrooms collected automatically:", collectedMushrooms);
     }
     
@@ -547,20 +558,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function endFocusSession() {
+        countAutomaticCollectedMushrooms();
+
         focusOverlay.classList.add("hidden");
         focusSummary.classList.remove("hidden");
     
         let summaryHTML = "<h3>You collected:</h3>";
     
         summaryHTML += `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 10px; text-align: center;">`;
+
+        console.log("mushroomGroupCounts: ", mushroomGroupCounts)
+
+        const MushroomCollectedElapsedTime = Math.floor((totalFocusTime - focusTimeLeft) * MushroomsPerSecond);
     
         Object.entries(mushroomGroupCounts).forEach(([group, count]) => {
+
+            console.log("MushroomCollectedElapsedTime: ", MushroomCollectedElapsedTime)
+
             let imageURL = `https://yiliu1237.github.io/FungiClock/mushroom_forest/interactive_objects/${mushroomGroupIcon[group]}.png`;
     
             summaryHTML += `
                 <div style="display: flex; flex-direction: column; align-items: center;">
                     <img src="${imageURL}" style="width: 50px; height: 50px; object-fit: cover;">
-                    <span style="font-size: 16px; font-weight: bold;">x${count}</span>
+                    <span style="font-size: 16px; font-weight: bold;">x${count * MushroomCollectedElapsedTime}</span>
                 </div>
             `;
         });
@@ -568,11 +588,6 @@ document.addEventListener("DOMContentLoaded", () => {
         summaryHTML += `</div>`; // Close the grid div
     
         focusSummaryText.innerHTML = summaryHTML; // Insert HTML into the summary
-
-        // Update the total collected mushrooms counter
-        collected += automaticCollectedMushrooms;
-        console.log("automaticCollectedMushrooms:", automaticCollectedMushrooms);
-        collectedCountDisplay.textContent = collected;
     }
 
 
