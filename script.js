@@ -345,15 +345,18 @@ document.addEventListener("DOMContentLoaded", () => {
         clockOverlay.classList.add("hidden");
     });
 
-    // Function to update the clock
+
     function updateClock() {
+        const now = new Date(); 
         const hours = now.getHours().toString().padStart(2, '0');
         const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0'); 
         const dateStr = now.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-
-        clockTime.textContent = `${hours}:${minutes}`;
+    
+        clockTime.textContent = `${hours}:${minutes}:${seconds}`; 
         clockDate.textContent = dateStr;
     }
+    
 
     // Update the clock every second
     setInterval(updateClock, 1000);
@@ -473,7 +476,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Automatically Collect Mushrooms
     let automaticCollectedMushrooms = 0;
     let mushroomGroupCounts = {}; 
-    const MushroomsPerSecond = 1;
+    const MushroomsPerSecond = 1./60.;
 
     function collectMushroomAutomatically() {
         const period = getTimePeriod();
