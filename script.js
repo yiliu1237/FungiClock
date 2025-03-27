@@ -198,112 +198,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /** Load Mushroom Positions */
     function loadMushroomPositions() {
-        // fetch("https://yiliu1237.github.io/FungiClock/mushroom_positions.json")
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         mushroomPositions = data;
-        //         console.log("mushroomPositions: ", data);
+        fetch("https://yiliu1237.github.io/FungiClock/mushroom_positions.json")
+            .then(response => response.json())
+            .then(data => {
+                mushroomPositions = data;
+                console.log("mushroomPositions: ", data);
 
-        //         setMushroomPositions();
-        //     })
-        //     .catch(error => console.error("Error loading mushroom positions:", error));
-
-        const data = {
-            "morning": {
-                "scene0": [
-                    { "type": "2", "left": "84vw", "top": "53vh", "width": "3vw"},
-                    { "type": "3", "left": "16vw", "top": "57vh", "width": "8vw"},
-                    { "type": "4", "left": "37vw", "top": "41vh", "width": "5vw"},
-                    { "type": "5", "left": "22vw", "top": "57vh", "width": "10vw"} //done
-                ],
-                "scene1": [
-                    { "type": "3", "left": "70vw", "top": "65vh", "width": "5vw" }, 
-                    { "type": "11", "left": "18vw", "top": "47vh", "width": "3vw" } //done
-                ],
-                "scene2": [
-                    { "type": "6", "left": "76vw", "top": "91vh", "width": "5vw" } //done
-                ]
-            },
-            "noon": {
-                "scene0": [
-                    { "type": "16", "left": "20vw", "top": "92vh", "width": "8vw"},
-                    { "type": "7", "left": "72vw", "top": "90vh", "width": "3.5vw" } //done
-                ],
-                "scene1": [
-                    { "type": "1", "left": "82vw", "top": "66vh", "width": "5vw"},
-                    { "type": "2", "left": "16vw", "top": "72vh", "width": "3.5vw" } //done
-                ],
-                "scene2": [
-                    { "type": "7", "left": "16vw", "top": "91vh", "width": "6vw" },
-                    { "type": "3", "left": "75vw", "top": "75vh", "width": "6vw" } //done
-                ]
-            },
-            "afternoon": {
-                "scene0": [
-                    { "type": "6", "left": "62vw", "top": "93vh", "width": "5vw"},
-                    { "type": "7", "left": "28vw", "top": "70vh", "width": "8vw" } //done
-                ],
-                "scene1": [
-                    { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
-                    { "type": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-                    { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
-                ],
-                "scene2": [
-                    { "type": "17", "left": "15vw", "top": "58vh", "width": "9vw" },
-                    { "type": "21", "left": "79vw", "top": "84vh", "width": "8vw" } //done
-                ]
-            },
-            "evening": {
-                "scene0": [
-                    { "type": "11", "left": "47vw", "top": "88vh", "width": "8vw"},
-                    { "type": "8", "left": "75vw", "top": "76vh", "width": "6vw" },
-                    { "type": "13", "left": "9vw", "top": "67vh", "width": "5vw" } //done
-                ],
-                "scene1": [
-                    { "type": "17", "left": "29vw", "top": "61vh", "width": "10vw"},
-                    { "type": "6", "left": "41vw", "top": "76vh", "width": "5vw" } //done
-                ],
-                "scene2": [
-                    { "type": "8", "left": "28vw", "top": "92vh", "width": "9vw" },
-                    { "type": "2", "left": "58vw", "top": "67vh", "width": "2.5vw" } //done
-                ]
-            },
-            "night": {
-                "scene0": [
-                    { "type": "14", "left": "35vw", "top": "89vh", "width": "5vw"},
-                    { "type": "15", "left": "46.5vw", "top": "69vh", "width": "3vw" },
-                    { "type": "9", "left": "21vw", "top": "52vh", "width": "4vw" } //done
-                ],
-                "scene1": [
-                    { "type": "1", "left": "80vw", "top": "85vh", "width": "4vw"} //done
-                ],
-                "scene2": [
-                    { "type": "5", "left": "80vw", "top": "92vh", "width": "4vw" },
-                    { "type": "13", "left": "26vw", "top": "76vh", "width": "4vw" } //done
-                ]
-            },
-            "dawn": {
-                "scene0": [
-                    { "type": "8", "left": "93vw", "top": "89vh", "width": "8vw"},
-                    { "type": "2", "left": "32vw", "top": "92vh", "width": "3vw" } //done
-                ],
-                "scene1": [
-                    { "type": "9", "left": "71vw", "top": "91vh", "width": "10vw"},
-                    { "type": "4", "left": "29vw", "top": "90vh", "width": "9vw" } //done
-                ],
-                "scene2": [
-                    { "type": "14", "left": "19vw", "top": "88vh", "width": "12vw" },
-                    { "type": "15", "left": "86vw", "top": "89vh", "width": "10vw" },
-                    { "type": "10", "left": "62vw", "top": "77vh", "width": "5vw" } //done
-                ]
-            }
-        };
-         
-        mushroomPositions = data;
-        console.log("mushroomPositions: ", data);
-
-
-        setMushroomPositions();
+                setMushroomPositions();
+            })
+            .catch(error => console.error("Error loading mushroom positions:", error));
     }
 
     // updateMushroom is called only once 
