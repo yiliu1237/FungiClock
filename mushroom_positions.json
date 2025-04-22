@@ -34,6 +34,9 @@
             { "type": "7", "left": "28vw", "top": "70vh", "width": "8vw" } 
         ],
         "scene1": [
+            // { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
+            // { "type": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
+            // { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
             { "type": "1", "left": "42vw", "top": "53vh", "width": "3.5vw"},
             { "type": "16", "left": "27vw", "top": "95vh", "width": "6vw" }
         ],
