@@ -34,9 +34,8 @@
             { "type": "7", "left": "28vw", "top": "70vh", "width": "8vw" } 
         ],
         "scene1": [
-            { "type": "1", "left": "52vw", "top": "60vh", "width": "5vw"},
-            { "type": "2", "left": "60vw", "top": "30vh", "width": "3.5vw" },
-            { "type": "3", "left": "70vw", "top": "70vh", "width": "5vw" }
+            { "type": "1", "left": "50vw", "top": "50vh", "width": "5vw"},
+            { "type": "16", "left": "30vw", "top": "70vh", "width": "5vw" }
         ],
         "scene2": [
             { "type": "17", "left": "15vw", "top": "58vh", "width": "9vw" },
