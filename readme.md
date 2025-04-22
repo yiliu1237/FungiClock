@@ -62,9 +62,9 @@ This app combines a clock, focus timer, and mushroom collection system to encour
 
 ## Screenshots
 
-| Focus Mode | Mushroom Collection | Scene Transition |
-|:----------:|:--------------------:|:-------------:|
-| ![Focus Mode](#) | ![Mushrooms](#) | ![Clock Overlay](demo.gif) |
+| Focus Mode | Mushroom Collection | Scene Transition | Clock |
+|:----------:|:--------------------:|:-------------:|:-------------:|
+| ![Focus Mode](display/focusMode.gif) | ![Mushrooms](display/mushroomCollection.gif) | ![Scene](display/sceneTransition.gif) | ![Clock Overlay](display/clock.gif) | 
 
 
 ---
