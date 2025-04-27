@@ -38,11 +38,11 @@ This app combines a clock, focus timer, and mushroom collection system to encour
 
 ---
 
-## 🛠️ How It Works
+## How It Works
 
 ### Focus Sessions
 - Click **Start Focus Session** to begin.
-- Set your desired focus duration (10–180 minutes).
+- Set your desired focus duration (10 - 180 minutes).
 - Mushrooms are collected passively based on focus time, and more mushrooms appear if you stay focused.
 - You can stop early, but rewards scale with the time you remain focused.
 
