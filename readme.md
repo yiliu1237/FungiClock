@@ -33,11 +33,6 @@ This app combines a clock, focus timer, and mushroom collection system to encour
 
 ---
 
-## Project Structure
-
-
----
-
 ## How It Works
 
 ### Focus Sessions
